@@ -55,5 +55,42 @@
 
 </div>
 
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+    // Initial array of possible articles
+    var articles = 'search';
+    var numberOfRecords = [1, 5, 10];
+    var beginDate = '';
+    var endDate = '';
+    // var clearButton = CLEAR
+
+    // displayMovieInfo function re-renders the HTML to display the appropriate content
+    function displayArticleInfo() {
+
+        // var article = $(this).attr("data-name");
+        var queryURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=db6fe2c152d740b896a4bc178cbc16ba&q=" + articles + "&page=" + 10 + "&begin_date=20050101&end_date=20080101";
+        // var queryURL = `https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=db6fe2c152d740b896a4bc178cbc16ba&q=${article}&page${numberOfRecordsfRecords}`;
+
+        $.ajax({
+            url: queryURL,
+            method: 'GET',
+        }).then(function (result) {
+            console.log(result);
+        }).catch(function (err) {
+            console.log('err: ', err);
+            throw err;
+        });
+
+    }
+
+    $(".btn-primary").on('click', function () {
+        console.log('hello');
+        displayArticleInfo()
+        // event.preventDefault();
+        // queryURL;
+    });
+</script>
+
 </body>
 </html>
